@@ -7,11 +7,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [bonusCode, setBonusCode] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   // This would typically come from a real backend/state management
   const userBalance = 25000.00;
@@ -33,7 +35,12 @@ const Profile = () => {
       description: "Get your daily rewards",
       onClick: () => setIsDialogOpen(true)
     },
-    { icon: Wallet, title: "Withdraw", description: "Transfer to your bank" },
+    { 
+      icon: Wallet, 
+      title: "Withdraw", 
+      description: "Transfer to your bank",
+      onClick: () => navigate("/withdraw")
+    },
     { icon: Battery, title: "Recharge", description: "Add funds to your account" },
     { icon: ClipboardList, title: "Transactions", description: "View your history" },
     { icon: Lock, title: "Change Password", description: "Update your security" },
