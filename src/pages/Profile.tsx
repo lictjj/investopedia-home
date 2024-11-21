@@ -89,6 +89,7 @@ const Profile = () => {
         >
           <div className="flex justify-between items-center mb-8">
             <div className="space-y-2">
+              <h2 className="text-2xl text-purple-400 mb-2">Hi there! 👋</h2>
               <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
                 {isAdmin ? "Admin Dashboard" : "Your Profile"}
               </h1>
