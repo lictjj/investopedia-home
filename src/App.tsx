@@ -7,8 +7,7 @@ import Index from "./pages/Index";
 import ProductsPage from "./pages/ProductsPage";
 import Profile from "./pages/Profile";
 import WithdrawPage from "./pages/WithdrawPage";
-
-const Team = () => <div className="min-h-screen bg-black text-white p-16 pt-32">Team Page Coming Soon</div>;
+import TeamPage from "./pages/TeamPage";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +20,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/products" element={<ProductsPage />} />
-          <Route path="/team" element={<Team />} />
+          <Route path="/team" element={<TeamPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/withdraw" element={<WithdrawPage />} />
         </Routes>
