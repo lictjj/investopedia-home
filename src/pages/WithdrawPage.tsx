@@ -11,18 +11,28 @@ const WithdrawPage = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [amount, setAmount] = useState("");
+  const [password, setPassword] = useState("");
   
   // This would typically come from a real backend/state management
   const userBalance = 25000.00;
 
   const handleWithdraw = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Withdrawing amount:", amount);
+    console.log("Attempting withdrawal with amount:", amount, "and password verification");
     
     if (!amount || parseFloat(amount) <= 0) {
       toast({
         title: "Invalid Amount",
         description: "Please enter a valid amount to withdraw",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!password) {
+      toast({
+        title: "Password Required",
+        description: "Please enter your password to proceed with the withdrawal",
         variant: "destructive",
       });
       return;
@@ -37,11 +47,14 @@ const WithdrawPage = () => {
       return;
     }
 
+    // Here you would typically verify the password with your backend
+    // For now, we'll simulate a successful verification
     toast({
       title: "Withdrawal Initiated",
       description: `Your withdrawal request for $${amount} has been submitted.`,
     });
     setAmount("");
+    setPassword("");
   };
 
   return (
@@ -82,6 +95,20 @@ const WithdrawPage = () => {
                 step="0.01"
                 min="0"
                 max={userBalance}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-sm text-gray-300">
+                Confirm Password
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="bg-zinc-800 border-purple-500/20 text-white"
               />
             </div>
 
