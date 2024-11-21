@@ -9,8 +9,8 @@ const features = [
   },
   {
     icon: <Wallet className="w-6 h-6" />,
-    title: "Commission-Free Trading",
-    description: "Trade stocks and ETFs without any commission fees",
+    title: "Our Philosophy",
+    description: "We believe success in the hospitality, leisure, retail, consumer and luxury goods industries requires more than just traditional strategies; it demands innovation, insight and a deep understanding of the unique challenges and opportunities within these sectors. Our philosophy is rooted in a commitment to providing exceptional strategic guidance and financial advisory services that transcend the ordinary. We are dedicated to helping our clients unlock their full potential by fostering innovation, enhancing customer experiences and optimising financial performance.",
   },
   {
     icon: <Shield className="w-6 h-6" />,
