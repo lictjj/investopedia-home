@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
 import { Shield, Gem, Trophy } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const About = () => {
   const aboutPoints = [
@@ -46,9 +52,21 @@ export const About = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="p-8 rounded-2xl bg-blue-900/10 border border-blue-500/20 hover:bg-blue-900/20 transition-all duration-300"
             >
-              <div className="mb-6 text-purple-400">{point.icon}</div>
-              <h3 className="text-xl font-semibold mb-4 text-white">{point.title}</h3>
-              <p className="text-gray-300">{point.description}</p>
+              <Accordion type="single" collapsible>
+                <AccordionItem value={`item-${index}`} className="border-none">
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-4">
+                      <div className="text-purple-400">{point.icon}</div>
+                      <h3 className="text-xl font-semibold text-white text-left">
+                        {point.title}
+                      </h3>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-gray-300 pt-4">{point.description}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </motion.div>
           ))}
         </div>
