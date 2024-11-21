@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { Users, Package } from "lucide-react";
+import { Users, Package, LogOut } from "lucide-react";
 
 const Profile = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -26,25 +26,43 @@ const Profile = () => {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
   const userBalance = 0;
 
-  // Mock data for admin dashboard - in a real app, this would come from your backend
+  // Mock data for admin dashboard
   const mockUsers = [
     { 
       id: 1, 
       phone: "+254712345678", 
       joinDate: "2024-02-20",
       products: ["Investment Plan A", "Investment Plan B"],
-      totalInvestment: 5000
+      totalInvestment: 5000,
+      status: "active"
     },
     { 
       id: 2, 
       phone: "+254787654321", 
       joinDate: "2024-02-19",
       products: ["Investment Plan C"],
-      totalInvestment: 2000
+      totalInvestment: 2000,
+      status: "active"
     }
   ];
 
-  console.log("Profile page loaded - Login status:", isLoggedIn, "Admin status:", isAdmin);
+  const handleSignOut = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("isAdmin");
+    toast({
+      title: "Signed Out",
+      description: "You have been successfully signed out.",
+    });
+    navigate("/auth");
+  };
+
+  const handleUserStatusChange = (userId: number, newStatus: string) => {
+    // In a real app, this would update the user's status in the backend
+    toast({
+      title: "Status Updated",
+      description: `User status has been updated to ${newStatus}`,
+    });
+  };
 
   const handleClaimBonus = () => {
     toast({
@@ -89,9 +107,19 @@ const Profile = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
-            {isAdmin ? "Admin Dashboard" : "Your Profile"}
-          </h1>
+          <div className="flex justify-between items-center mb-8">
+            <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+              {isAdmin ? "Admin Dashboard" : "Your Profile"}
+            </h1>
+            <Button
+              onClick={handleSignOut}
+              variant="destructive"
+              className="flex items-center gap-2"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign Out
+            </Button>
+          </div>
           
           {isAdmin ? (
             <div className="space-y-8">
@@ -106,7 +134,9 @@ const Profile = () => {
                       <TableHead>Phone Number</TableHead>
                       <TableHead>Join Date</TableHead>
                       <TableHead>Products</TableHead>
-                      <TableHead className="text-right">Total Investment</TableHead>
+                      <TableHead>Total Investment</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead>Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -127,8 +157,23 @@ const Profile = () => {
                             ))}
                           </div>
                         </TableCell>
-                        <TableCell className="text-right">
-                          ${user.totalInvestment.toLocaleString()}
+                        <TableCell>${user.totalInvestment.toLocaleString()}</TableCell>
+                        <TableCell>
+                          <span className={`px-2 py-1 rounded-full text-xs ${
+                            user.status === 'active' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
+                          }`}>
+                            {user.status}
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleUserStatusChange(user.id, user.status === 'active' ? 'suspended' : 'active')}
+                            className="text-xs"
+                          >
+                            {user.status === 'active' ? 'Suspend' : 'Activate'}
+                          </Button>
                         </TableCell>
                       </TableRow>
                     ))}
