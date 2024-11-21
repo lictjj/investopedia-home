@@ -8,7 +8,7 @@ const stats = [
 
 export const Stats = () => {
   return (
-    <section className="py-24 bg-sage/10">
+    <section className="py-24 bg-purple-900/10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {stats.map((stat, index) => (
@@ -20,8 +20,10 @@ export const Stats = () => {
               viewport={{ once: true }}
               className="text-center"
             >
-              <h2 className="text-4xl font-bold mb-2">{stat.value}</h2>
-              <p className="text-gray-600">{stat.label}</p>
+              <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+                {stat.value}
+              </h2>
+              <p className="text-gray-300">{stat.label}</p>
             </motion.div>
           ))}
         </div>

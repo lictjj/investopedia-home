@@ -5,7 +5,7 @@ import { CTA } from "../components/CTA";
 
 const Index = () => {
   return (
-    <main className="bg-white">
+    <main className="bg-black">
       <Hero />
       <Features />
       <Stats />
