@@ -6,35 +6,43 @@ export const Hero = () => {
   console.log("Hero component - Login status:", isLoggedIn);
 
   return (
-    <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden bg-black">
-      <div className="absolute inset-0">
-        {/* Animated background elements */}
-        {[...Array(3)].map((_, index) => (
-          <motion.div
-            key={index}
-            className="absolute rounded-full bg-gradient-to-r from-purple-600/20 to-pink-500/20 blur-3xl"
-            initial={{ opacity: 0.5 }}
-            animate={{
-              scale: [1, 1.2, 1],
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              delay: index * 2,
-            }}
-            style={{
-              width: `${300 + index * 100}px`,
-              height: `${300 + index * 100}px`,
-              left: `${index * 30}%`,
-              top: `${20 + index * 10}%`,
-            }}
-          />
-        ))}
+    <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden">
+      {/* Background image with overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url("/lovable-uploads/d758b9b8-fd19-4115-acd0-3f838829b431.png")',
+        }}
+      >
+        <div className="absolute inset-0 bg-black/60" /> {/* Dark overlay */}
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
-      <div className="container mx-auto px-4 relative">
+
+      {/* Animated background elements with reduced opacity */}
+      {[...Array(3)].map((_, index) => (
+        <motion.div
+          key={index}
+          className="absolute rounded-full bg-gradient-to-r from-purple-600/10 to-pink-500/10 blur-3xl"
+          initial={{ opacity: 0.3 }}
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            delay: index * 2,
+          }}
+          style={{
+            width: `${300 + index * 100}px`,
+            height: `${300 + index * 100}px`,
+            left: `${index * 30}%`,
+            top: `${20 + index * 10}%`,
+          }}
+        />
+      ))}
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
