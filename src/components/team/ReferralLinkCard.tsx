@@ -7,8 +7,13 @@ export const ReferralLinkCard = () => {
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
 
-  // In a real app, this would come from the user's profile
-  const userId = crypto.randomUUID();
+  // Get userId from localStorage to ensure consistency with profile page
+  const userId = localStorage.getItem('userId') || (() => {
+    const newUserId = crypto.randomUUID();
+    localStorage.setItem('userId', newUserId);
+    return newUserId;
+  })();
+  
   const referralLink = `${window.location.origin}/auth?ref=${userId}`;
 
   const copyReferralLink = async () => {
