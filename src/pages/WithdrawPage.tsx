@@ -15,6 +15,15 @@ const WithdrawPage = () => {
   
   // This would typically come from a real backend/state management
   const userBalance = 25000.00;
+  const FEE_PERCENTAGE = 15;
+
+  const calculateFee = (amount: number) => {
+    return (amount * FEE_PERCENTAGE) / 100;
+  };
+
+  const calculateFinalAmount = (amount: number) => {
+    return amount - calculateFee(amount);
+  };
 
   const handleWithdraw = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +47,8 @@ const WithdrawPage = () => {
       return;
     }
 
-    if (parseFloat(amount) > userBalance) {
+    const withdrawAmount = parseFloat(amount);
+    if (withdrawAmount > userBalance) {
       toast({
         title: "Insufficient Balance",
         description: "You don't have enough funds for this withdrawal",
@@ -51,7 +61,7 @@ const WithdrawPage = () => {
     // For now, we'll simulate a successful verification
     toast({
       title: "Withdrawal Initiated",
-      description: `Your withdrawal request for $${amount} has been submitted.`,
+      description: `Your withdrawal request for $${amount} has been submitted. After ${FEE_PERCENTAGE}% fee, you will receive $${calculateFinalAmount(withdrawAmount).toFixed(2)}.`,
     });
     setAmount("");
     setPassword("");
@@ -96,6 +106,16 @@ const WithdrawPage = () => {
                 min="0"
                 max={userBalance}
               />
+              {amount && parseFloat(amount) > 0 && (
+                <div className="mt-2 space-y-1 text-sm">
+                  <p className="text-gray-400">
+                    Withdrawal Fee ({FEE_PERCENTAGE}%): ${calculateFee(parseFloat(amount)).toFixed(2)}
+                  </p>
+                  <p className="text-purple-400 font-semibold">
+                    You will receive: ${calculateFinalAmount(parseFloat(amount)).toFixed(2)}
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
