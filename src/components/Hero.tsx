@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export const Hero = () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  console.log("Hero component - Login status:", isLoggedIn);
+
   return (
     <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden bg-black">
       <div className="absolute inset-0">
@@ -62,7 +65,7 @@ export const Hero = () => {
           >
             Experience the future of investing with AI-powered insights and professional-grade tools.
           </motion.p>
-          <Link to="/auth">
+          <Link to={isLoggedIn ? "/products" : "/auth"}>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
