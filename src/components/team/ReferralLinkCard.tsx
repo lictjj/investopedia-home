@@ -1,16 +1,32 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link as LinkIcon } from "lucide-react";
+import { Link as LinkIcon, Copy, Check } from "lucide-react";
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 export const ReferralLinkCard = () => {
-  const [referralLink] = useState(`https://yourdomain.com/ref/${crypto.randomUUID()}`);
+  const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
+
+  // In a real app, this would come from the user's profile
+  const userId = crypto.randomUUID();
+  const referralLink = `${window.location.origin}/auth?ref=${userId}`;
 
   const copyReferralLink = async () => {
     try {
       await navigator.clipboard.writeText(referralLink);
-      console.log("Referral link copied:", referralLink);
+      setCopied(true);
+      toast({
+        title: "Success",
+        description: "Referral link copied to clipboard!",
+      });
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("Failed to copy referral link:", err);
+      toast({
+        title: "Error",
+        description: "Failed to copy referral link",
+        variant: "destructive",
+      });
     }
   };
 
@@ -32,9 +48,14 @@ export const ReferralLinkCard = () => {
           />
           <button
             onClick={copyReferralLink}
-            className="px-4 py-2 bg-purple-500 rounded-md hover:bg-purple-600 transition-colors"
+            className="px-4 py-2 bg-purple-500 rounded-md hover:bg-purple-600 transition-colors flex items-center gap-2"
           >
-            Copy Link
+            {copied ? (
+              <Check className="h-4 w-4" />
+            ) : (
+              <Copy className="h-4 w-4" />
+            )}
+            {copied ? "Copied!" : "Copy Link"}
           </button>
         </div>
         <p className="text-sm text-gray-400 mt-2">
