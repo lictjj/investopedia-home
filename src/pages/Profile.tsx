@@ -15,8 +15,8 @@ const Profile = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   
-  // This would typically come from a real backend/state management
-  const userBalance = 25000.00;
+  // Initialize balance as 0 for new users
+  const userBalance = 0;
 
   const handleClaimBonus = () => {
     console.log("Claiming bonus with code:", bonusCode);
