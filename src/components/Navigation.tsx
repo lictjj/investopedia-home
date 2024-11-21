@@ -9,7 +9,7 @@ const Navigation = () => {
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center space-x-2 text-white hover:text-blue-400 transition-colors">
               <Home size={20} />
-              <span>Home</span>
+              <span>Sonder Limited</span>
             </Link>
             <Link to="/products" className="flex items-center space-x-2 text-white hover:text-blue-400 transition-colors">
               <ShoppingBag size={20} />
