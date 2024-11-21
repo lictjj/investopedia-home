@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
+import { LogOut, Wallet } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
@@ -14,7 +14,7 @@ const Profile = () => {
   
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const isAdmin = localStorage.getItem("isAdmin") === "true";
-  const userBalance = 0;
+  const userBalance = 0; // This would typically come from your backend
 
   // Mock data for admin dashboard
   const mockUsers = [
@@ -88,9 +88,18 @@ const Profile = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
-              {isAdmin ? "Admin Dashboard" : "Your Profile"}
-            </h1>
+            <div className="space-y-2">
+              <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+                {isAdmin ? "Admin Dashboard" : "Your Profile"}
+              </h1>
+              {!isAdmin && (
+                <div className="flex items-center gap-2 text-xl">
+                  <Wallet className="h-5 w-5 text-purple-400" />
+                  <span className="text-gray-300">Balance:</span>
+                  <span className="font-bold text-purple-400">KSH {userBalance.toLocaleString()}</span>
+                </div>
+              )}
+            </div>
             <Button
               onClick={handleSignOut}
               variant="destructive"
