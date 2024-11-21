@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import Navigation from "@/components/Navigation";
 
 const Auth = () => {
   const [phone, setPhone] = useState("");
@@ -52,7 +53,8 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-black flex flex-col relative overflow-hidden">
+      <Navigation />
       {/* Animated background elements */}
       {[...Array(5)].map((_, index) => (
         <motion.div
@@ -91,7 +93,7 @@ const Auth = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 w-full max-w-md p-8"
+        className="relative z-10 w-full max-w-md p-8 mx-auto mt-20"
       >
         <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-purple-500/20">
           <Tabs defaultValue="login" className="space-y-6">
