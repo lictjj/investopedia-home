@@ -12,6 +12,8 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
+import { Users, Package } from "lucide-react";
 
 const Profile = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -23,6 +25,26 @@ const Profile = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const isAdmin = localStorage.getItem("isAdmin") === "true";
   const userBalance = 0;
+
+  // Mock data for admin dashboard - in a real app, this would come from your backend
+  const mockUsers = [
+    { 
+      id: 1, 
+      phone: "+254712345678", 
+      joinDate: "2024-02-20",
+      products: ["Investment Plan A", "Investment Plan B"],
+      totalInvestment: 5000
+    },
+    { 
+      id: 2, 
+      phone: "+254787654321", 
+      joinDate: "2024-02-19",
+      products: ["Investment Plan C"],
+      totalInvestment: 2000
+    }
+  ];
+
+  console.log("Profile page loaded - Login status:", isLoggedIn, "Admin status:", isAdmin);
 
   const handleClaimBonus = () => {
     toast({
@@ -58,37 +80,6 @@ const Profile = () => {
     );
   }
 
-  const features = [
-    { 
-      title: isAdmin ? "Admin Dashboard" : "Current Balance",
-      value: isAdmin ? "Admin Access" : `$${userBalance}`,
-      action: "View Details",
-      onClick: () => console.log("View balance details"),
-    },
-    { 
-      title: "Bonus Section",
-      value: "Claim your bonus below",
-      action: "Open",
-      onClick: () => setIsDialogOpen(true),
-    },
-    { 
-      title: "Settings",
-      value: "Manage your preferences",
-      action: "Go to Settings",
-      onClick: () => console.log("Navigating to settings"),
-    },
-    { 
-      title: "Logout",
-      value: "Sign out of your account",
-      action: "Logout",
-      onClick: () => {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("isAdmin");
-        navigate("/auth");
-      },
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-black text-white">
       <Navigation />
@@ -99,29 +90,71 @@ const Profile = () => {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
-            {isAdmin ? "Admin Profile" : "Your Profile"}
+            {isAdmin ? "Admin Dashboard" : "Your Profile"}
           </h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all"
-              >
-                <h3 className="text-lg font-medium text-gray-200 mb-2">{feature.title}</h3>
-                <p className="text-2xl font-bold text-purple-400 mb-4">{feature.value}</p>
-                <Button
-                  onClick={feature.onClick}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600"
-                >
-                  {feature.action}
-                </Button>
-              </motion.div>
-            ))}
-          </div>
+          {isAdmin ? (
+            <div className="space-y-8">
+              <div className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20">
+                <div className="flex items-center gap-2 mb-4">
+                  <Users className="h-5 w-5 text-purple-400" />
+                  <h2 className="text-xl font-semibold">Registered Users</h2>
+                </div>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Phone Number</TableHead>
+                      <TableHead>Join Date</TableHead>
+                      <TableHead>Products</TableHead>
+                      <TableHead className="text-right">Total Investment</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {mockUsers.map((user) => (
+                      <TableRow key={user.id}>
+                        <TableCell>{user.phone}</TableCell>
+                        <TableCell>{user.joinDate}</TableCell>
+                        <TableCell>
+                          <div className="flex flex-wrap gap-2">
+                            {user.products.map((product, index) => (
+                              <span 
+                                key={index}
+                                className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs bg-purple-500/20 text-purple-400"
+                              >
+                                <Package className="h-3 w-3" />
+                                {product}
+                              </span>
+                            ))}
+                          </div>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          ${user.totalInvestment.toLocaleString()}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
+                <h3 className="text-lg font-medium text-gray-200 mb-2">Current Balance</h3>
+                <p className="text-2xl font-bold text-purple-400 mb-4">${userBalance}</p>
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600">View Details</Button>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
+                <h3 className="text-lg font-medium text-gray-200 mb-2">Bonus Section</h3>
+                <p className="text-2xl font-bold text-purple-400 mb-4">Claim your bonus below</p>
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600" onClick={() => setIsDialogOpen(true)}>Open</Button>
+              </div>
+              <div className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
+                <h3 className="text-lg font-medium text-gray-200 mb-2">Settings</h3>
+                <p className="text-2xl font-bold text-purple-400 mb-4">Manage your preferences</p>
+                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600">Go to Settings</Button>
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
 
