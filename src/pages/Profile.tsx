@@ -1,27 +1,17 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+import { UserDashboard } from "@/components/profile/UserDashboard";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { Users, Package, LogOut } from "lucide-react";
+import { Users, Package } from "lucide-react";
 
 const Profile = () => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [bonusCode, setBonusCode] = useState("");
   const { toast } = useToast();
   const navigate = useNavigate();
   
-  // Check for login and admin status
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const isAdmin = localStorage.getItem("isAdmin") === "true";
   const userBalance = 0;
@@ -57,20 +47,10 @@ const Profile = () => {
   };
 
   const handleUserStatusChange = (userId: number, newStatus: string) => {
-    // In a real app, this would update the user's status in the backend
     toast({
       title: "Status Updated",
       description: `User status has been updated to ${newStatus}`,
     });
-  };
-
-  const handleClaimBonus = () => {
-    toast({
-      title: "Bonus Claimed!",
-      description: `Successfully claimed bonus with code: ${bonusCode}`,
-    });
-    setBonusCode("");
-    setIsDialogOpen(false);
   };
 
   if (!isLoggedIn) {
@@ -182,45 +162,10 @@ const Profile = () => {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
-                <h3 className="text-lg font-medium text-gray-200 mb-2">Current Balance</h3>
-                <p className="text-2xl font-bold text-purple-400 mb-4">${userBalance}</p>
-                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600">View Details</Button>
-              </div>
-              <div className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
-                <h3 className="text-lg font-medium text-gray-200 mb-2">Bonus Section</h3>
-                <p className="text-2xl font-bold text-purple-400 mb-4">Claim your bonus below</p>
-                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600" onClick={() => setIsDialogOpen(true)}>Open</Button>
-              </div>
-              <div className="bg-zinc-900/50 backdrop-blur-xl p-6 rounded-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
-                <h3 className="text-lg font-medium text-gray-200 mb-2">Settings</h3>
-                <p className="text-2xl font-bold text-purple-400 mb-4">Manage your preferences</p>
-                <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600">Go to Settings</Button>
-              </div>
-            </div>
+            <UserDashboard />
           )}
         </motion.div>
       </div>
-
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Enter Bonus Code</DialogTitle>
-            <DialogDescription>
-              Enter your bonus code to claim your reward
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4">
-            <Input
-              placeholder="Enter code"
-              value={bonusCode}
-              onChange={(e) => setBonusCode(e.target.value)}
-            />
-            <Button onClick={handleClaimBonus}>Claim Bonus</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
