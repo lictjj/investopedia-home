@@ -3,18 +3,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/components/ui/use-toast";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useState } from "react";
 
 export const RechargeArea = () => {
   const { toast } = useToast();
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const amounts = [1000, 2000, 3500, 6000, 10000, 15000, 25000, 30000, 50000, 80000, 100000];
 
   const handleAmountSelect = (amount: number) => {
     console.log("Selected recharge amount:", amount);
+    setSelectedAmount(amount);
     toast({
       title: "Amount Selected",
       description: `Processing recharge of $${amount.toLocaleString()}...`,
     });
-    // Here you would typically handle the payment processing
   };
 
   return (
@@ -25,7 +28,7 @@ export const RechargeArea = () => {
           Recharge
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-4">
         <Popover>
           <PopoverTrigger asChild>
             <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600">
@@ -47,6 +50,24 @@ export const RechargeArea = () => {
             </div>
           </PopoverContent>
         </Popover>
+
+        {selectedAmount && (
+          <Alert className="bg-purple-500/10 border border-purple-500/20">
+            <AlertDescription className="space-y-4">
+              <h3 className="font-semibold text-purple-400">Recharge Notes</h3>
+              <ol className="list-decimal pl-4 space-y-2 text-sm">
+                <li>Follow the steps carefully below to recharge properly.</li>
+                <li>You can recharge a minimum of KES 1000.00</li>
+                <li>Paybill-542542</li>
+                <li>Acc no-03803871616150</li>
+                <li>Please, wait 1-30 minutes after completing the recharge</li>
+              </ol>
+              <p className="text-sm text-purple-400 font-medium">
+                Selected Amount: ${selectedAmount.toLocaleString()}
+              </p>
+            </AlertDescription>
+          </Alert>
+        )}
       </CardContent>
     </Card>
   );
