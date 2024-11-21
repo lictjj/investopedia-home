@@ -46,7 +46,7 @@ const AddFundsPage = () => {
                   selectedAmount === amount ? "bg-purple-500/20 border-purple-500" : ""
                 }`}
               >
-                ${amount.toLocaleString()}
+                KSH {amount.toLocaleString()}
               </Button>
             ))}
           </div>

@@ -97,7 +97,7 @@ export const TransactionArea = () => {
                         ? 'text-green-400' 
                         : 'text-red-400'
                     }`}>
-                      ${Math.abs(transaction.amount).toLocaleString()}
+                      KSH {Math.abs(transaction.amount).toLocaleString()}
                     </TableCell>
                     <TableCell>
                       <span className="px-2 py-1 rounded-full text-xs bg-purple-500/20 text-purple-400">

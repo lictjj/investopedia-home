@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "$2.5B+", label: "Assets Managed" },
+  { value: "KSH 2.5B+", label: "Assets Managed" },
   { value: "99.9%", label: "Uptime" },
   { value: "250K+", label: "Active Users" },
 ];

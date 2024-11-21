@@ -87,7 +87,7 @@ const WithdrawPage = () => {
         <Card className="bg-zinc-900/50 border-purple-500/20 p-6 space-y-6">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold text-purple-400">Withdraw Funds</h1>
-            <p className="text-gray-400">Available Balance: ${userBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+            <p className="text-gray-400">Available Balance: KSH {userBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
           </div>
 
           <form onSubmit={handleWithdraw} className="space-y-4">
