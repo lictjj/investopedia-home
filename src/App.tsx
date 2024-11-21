@@ -8,6 +8,7 @@ import ProductsPage from "./pages/ProductsPage";
 import Profile from "./pages/Profile";
 import WithdrawPage from "./pages/WithdrawPage";
 import TeamPage from "./pages/TeamPage";
+import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/team" element={<TeamPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/withdraw" element={<WithdrawPage />} />
+          <Route path="/auth" element={<Auth />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

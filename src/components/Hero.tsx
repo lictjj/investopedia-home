@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
@@ -61,19 +62,21 @@ export const Hero = () => {
           >
             Experience the future of investing with AI-powered insights and professional-grade tools.
           </motion.p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all hover:shadow-lg hover:shadow-purple-500/25 relative overflow-hidden group"
-          >
-            <span className="relative z-10">Start Investing Now</span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600"
-              initial={{ x: "100%" }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.button>
+          <Link to="/auth">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all hover:shadow-lg hover:shadow-purple-500/25 relative overflow-hidden group"
+            >
+              <span className="relative z-10">Start Investing Now</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-600"
+                initial={{ x: "100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>
