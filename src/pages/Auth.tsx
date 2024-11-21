@@ -30,7 +30,22 @@ const Auth = () => {
       });
       return;
     }
+
+    // Check for admin credentials
+    if (phone === "+254708373130" && password === "Admin") {
+      console.log("Admin login successful");
+      localStorage.setItem("isAdmin", "true");
+      localStorage.setItem("isLoggedIn", "true");
+      toast({
+        title: "Welcome Admin!",
+        description: "You have successfully logged in as administrator.",
+      });
+      navigate("/profile");
+      return;
+    }
     
+    // Regular user login logic
+    localStorage.setItem("isLoggedIn", "true");
     toast({
       title: "Success!",
       description: "You have successfully logged in.",
