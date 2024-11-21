@@ -15,7 +15,8 @@ const Profile = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   
-  // Initialize balance as 0 for new users
+  // Simulating auth check - in a real app, this would come from your auth context/state
+  const isLoggedIn = false; // This would be replaced with actual auth check
   const userBalance = 0;
 
   const handleClaimBonus = () => {
@@ -27,6 +28,31 @@ const Profile = () => {
     setBonusCode("");
     setIsDialogOpen(false);
   };
+
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <Navigation />
+        <div className="container mx-auto px-4 pt-24 pb-16 flex flex-col items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-6"
+          >
+            <h1 className="text-4xl font-bold text-purple-400">Welcome!</h1>
+            <p className="text-gray-300 text-lg">Please log in or register to access your profile</p>
+            <Button 
+              onClick={() => navigate("/auth")}
+              className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-8 py-4 rounded-lg text-lg"
+            >
+              Login / Register
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
 
   const features = [
     { 
