@@ -12,8 +12,8 @@ const Profile = () => {
           transition={{ duration: 0.5 }}
           className="text-center space-y-4"
         >
-          <h1 className="text-4xl font-bold text-purple-400">Hi</h1>
-          <p className="text-gray-300">Welcome to your profile</p>
+          <h1 className="text-4xl font-bold text-purple-400">Hi there!</h1>
+          <p className="text-gray-300">Welcome to your profile page</p>
         </motion.div>
       </div>
     </div>
