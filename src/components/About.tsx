@@ -6,7 +6,7 @@ export const About = () => {
     {
       icon: <Shield className="w-8 h-8" />,
       title: "Licensed & Regulated",
-      description: "Operating under strict financial regulations to protect your investments",
+      description: "We are committed to staying at the forefront of industry innovation by investing significantly in proprietary technology that revolutionises how businesses understand and engage with their customers. Our cutting-edge tool is meticulously designed to delve into the intricacies of consumer behaviour and consumption patterns, unlocking actionable insights to drive consumer growth and sustainable success.",
     },
     {
       icon: <Gem className="w-8 h-8" />,
