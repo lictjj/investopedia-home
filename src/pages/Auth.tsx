@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,10 +9,19 @@ import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 
 const Auth = () => {
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState("login");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const { toast } = useToast();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if state was passed from CTA component
+    if (location.state?.defaultTab === "register") {
+      setActiveTab("register");
+    }
+  }, [location.state]);
 
   const validatePhoneNumber = (number: string) => {
     const phoneRegex = /^\+254[17]\d{8}$/;
@@ -70,7 +80,6 @@ const Auth = () => {
   return (
     <div className="min-h-screen bg-black flex flex-col relative overflow-hidden">
       <Navigation />
-      {/* Animated background elements */}
       {[...Array(5)].map((_, index) => (
         <motion.div
           key={index}
@@ -111,7 +120,12 @@ const Auth = () => {
         className="relative z-10 w-full max-w-md p-8 mx-auto mt-20"
       >
         <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-purple-500/20">
-          <Tabs defaultValue="login" className="space-y-6">
+          <Tabs 
+            defaultValue="login" 
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="space-y-6"
+          >
             <TabsList className="grid grid-cols-2 bg-zinc-800/50">
               <TabsTrigger value="login" className="data-[state=active]:bg-purple-600">Login</TabsTrigger>
               <TabsTrigger value="register" className="data-[state=active]:bg-purple-600">Register</TabsTrigger>
