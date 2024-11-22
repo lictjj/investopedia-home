@@ -2,6 +2,13 @@ import Navigation from "../components/Navigation";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const ProductsPage = () => {
   return (
@@ -99,18 +106,26 @@ const ProductsPage = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <img 
-                          src="/lovable-uploads/ef961a34-c01f-424f-9ad5-cc1b6c2ead8f.png"
-                          alt="Mining Machine Front View"
-                          className="rounded-lg w-full"
-                        />
-                        <img 
-                          src="/lovable-uploads/e944d620-cbf4-4415-ac1f-165c9d423310.png"
-                          alt="Mining Machine Side View"
-                          className="rounded-lg w-full"
-                        />
-                      </div>
+                      <Carousel className="w-full">
+                        <CarouselContent>
+                          <CarouselItem>
+                            <img 
+                              src="/lovable-uploads/ef961a34-c01f-424f-9ad5-cc1b6c2ead8f.png"
+                              alt="Mining Machine Front View"
+                              className="rounded-lg w-full"
+                            />
+                          </CarouselItem>
+                          <CarouselItem>
+                            <img 
+                              src="/lovable-uploads/e944d620-cbf4-4415-ac1f-165c9d423310.png"
+                              alt="Mining Machine Side View"
+                              className="rounded-lg w-full"
+                            />
+                          </CarouselItem>
+                        </CarouselContent>
+                        <CarouselPrevious className="left-2" />
+                        <CarouselNext className="right-2" />
+                      </Carousel>
                       <div className="space-y-2 text-gray-300">
                         <p className="flex justify-between">
                           <span>Price:</span>
