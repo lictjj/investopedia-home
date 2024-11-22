@@ -113,6 +113,10 @@ const ProductsPage = () => {
                       </div>
                       <div className="space-y-2 text-gray-300">
                         <p className="flex justify-between">
+                          <span>Price:</span>
+                          <span className="text-purple-400">KES 1,000.00</span>
+                        </p>
+                        <p className="flex justify-between">
                           <span>Daily Income:</span>
                           <span className="text-purple-400">KES 200.00</span>
                         </p>
