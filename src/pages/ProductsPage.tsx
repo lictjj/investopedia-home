@@ -2,6 +2,8 @@ import Navigation from "../components/Navigation";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +13,11 @@ import {
 } from "@/components/ui/carousel";
 
 const ProductsPage = () => {
+  const handleBuyProduct = () => {
+    console.log("Buy product clicked");
+    toast.success("Purchase initiated! Please check your balance.");
+  };
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       {/* Animated background elements */}
@@ -100,7 +107,7 @@ const ProductsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
-                <Card className="bg-purple-900/10 backdrop-blur-lg border border-purple-500/20">
+                <Card className="bg-purple-900/10 backdrop-blur-lg border border-purple-500/20 max-w-sm mx-auto w-full sm:w-auto">
                   <CardHeader>
                     <CardTitle className="text-xl text-purple-400">Mining Machine Package</CardTitle>
                   </CardHeader>
@@ -112,14 +119,14 @@ const ProductsPage = () => {
                             <img 
                               src="/lovable-uploads/ef961a34-c01f-424f-9ad5-cc1b6c2ead8f.png"
                               alt="Mining Machine Front View"
-                              className="rounded-lg w-full"
+                              className="rounded-lg w-full h-48 object-cover"
                             />
                           </CarouselItem>
                           <CarouselItem>
                             <img 
                               src="/lovable-uploads/e944d620-cbf4-4415-ac1f-165c9d423310.png"
                               alt="Mining Machine Side View"
-                              className="rounded-lg w-full"
+                              className="rounded-lg w-full h-48 object-cover"
                             />
                           </CarouselItem>
                         </CarouselContent>
@@ -148,6 +155,12 @@ const ProductsPage = () => {
                           <span className="text-purple-400">1</span>
                         </p>
                       </div>
+                      <Button 
+                        onClick={handleBuyProduct}
+                        className="w-full bg-purple-500 hover:bg-purple-600 text-white"
+                      >
+                        Buy Now
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>
