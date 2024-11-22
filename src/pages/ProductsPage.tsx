@@ -1,6 +1,7 @@
 import Navigation from "../components/Navigation";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const ProductsPage = () => {
   return (
@@ -62,7 +63,6 @@ const ProductsPage = () => {
 
       <Navigation />
       
-      {/* Content with glass effect */}
       <div className="container mx-auto px-4 pt-24 relative z-10">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
@@ -91,11 +91,47 @@ const ProductsPage = () => {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-6 rounded-lg bg-purple-900/10 backdrop-blur-lg border border-purple-500/20"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
-                <div className="text-gray-400">
-                  All Products content coming soon...
-                </div>
+                <Card className="bg-purple-900/10 backdrop-blur-lg border border-purple-500/20">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-purple-400">Mining Machine Package</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <img 
+                          src="/lovable-uploads/ef961a34-c01f-424f-9ad5-cc1b6c2ead8f.png"
+                          alt="Mining Machine Front View"
+                          className="rounded-lg w-full"
+                        />
+                        <img 
+                          src="/lovable-uploads/e944d620-cbf4-4415-ac1f-165c9d423310.png"
+                          alt="Mining Machine Side View"
+                          className="rounded-lg w-full"
+                        />
+                      </div>
+                      <div className="space-y-2 text-gray-300">
+                        <p className="flex justify-between">
+                          <span>Daily Income:</span>
+                          <span className="text-purple-400">KES 200.00</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span>Total Income:</span>
+                          <span className="text-purple-400">KES 6,000.00</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span>Cycle:</span>
+                          <span className="text-purple-400">30 days</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span>Invest Limit:</span>
+                          <span className="text-purple-400">1</span>
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             </TabsContent>
             
