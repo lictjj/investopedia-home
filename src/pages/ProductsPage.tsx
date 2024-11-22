@@ -109,7 +109,7 @@ const ProductsPage = () => {
               >
                 <Card className="bg-purple-900/10 backdrop-blur-lg border border-purple-500/20 max-w-sm mx-auto w-full sm:w-auto">
                   <CardHeader>
-                    <CardTitle className="text-xl text-purple-400">Mining Machine Package</CardTitle>
+                    <CardTitle className="text-xl text-purple-400">Bitcoin Mining Machine</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
