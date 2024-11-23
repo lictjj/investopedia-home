@@ -64,6 +64,24 @@ const ProductsPage = () => {
       totalIncome: "KES 18,000.00",
       cycle: "30 days",
       investLimit: "1"
+    },
+    {
+      title: "Quantumcomps",
+      images: [
+        {
+          src: "/lovable-uploads/210b987f-1eb4-4afb-8358-9a875cad0ba0.png",
+          alt: "Quantumcomps Front View"
+        },
+        {
+          src: "/lovable-uploads/f2db8567-863e-4edf-b16a-7ed00f7f7219.png",
+          alt: "Quantumcomps Side View"
+        }
+      ],
+      price: "KES 3,500.00",
+      dailyIncome: "KES 1,100.00",
+      totalIncome: "KES 33,000.00",
+      cycle: "30 days",
+      investLimit: "2"
     }
   ];
 
