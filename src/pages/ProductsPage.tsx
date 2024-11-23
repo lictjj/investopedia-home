@@ -107,6 +107,7 @@ const ProductsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
+                {/* Bitcoin Mining Machine Card */}
                 <Card className="bg-purple-900/10 backdrop-blur-lg border border-purple-500/20 max-w-sm mx-auto w-full sm:w-auto">
                   <CardHeader>
                     <CardTitle className="text-xl text-purple-400">Bitcoin Mining Machine</CardTitle>
@@ -145,6 +146,65 @@ const ProductsPage = () => {
                         <p className="flex justify-between">
                           <span>Total Income:</span>
                           <span className="text-purple-400">KES 6,000.00</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span>Cycle:</span>
+                          <span className="text-purple-400">30 days</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span>Invest Limit:</span>
+                          <span className="text-purple-400">1</span>
+                        </p>
+                      </div>
+                      <Button 
+                        onClick={handleBuyProduct}
+                        className="w-full bg-purple-500 hover:bg-purple-600 text-white"
+                      >
+                        Buy Now
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* MacroComputers Card */}
+                <Card className="bg-purple-900/10 backdrop-blur-lg border border-purple-500/20 max-w-sm mx-auto w-full sm:w-auto">
+                  <CardHeader>
+                    <CardTitle className="text-xl text-purple-400">MacroComputers</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <Carousel className="w-full">
+                        <CarouselContent>
+                          <CarouselItem>
+                            <img 
+                              src="/lovable-uploads/ebda3a3a-30b7-490e-bcdb-5a75d6ab02c7.png"
+                              alt="MacroComputers Front View"
+                              className="rounded-lg w-full h-48 object-cover"
+                            />
+                          </CarouselItem>
+                          <CarouselItem>
+                            <img 
+                              src="/lovable-uploads/3d833c1d-1588-4077-9afe-0f8ea5960012.png"
+                              alt="MacroComputers Side View"
+                              className="rounded-lg w-full h-48 object-cover"
+                            />
+                          </CarouselItem>
+                        </CarouselContent>
+                        <CarouselPrevious className="left-2" />
+                        <CarouselNext className="right-2" />
+                      </Carousel>
+                      <div className="space-y-2 text-gray-300">
+                        <p className="flex justify-between">
+                          <span>Price:</span>
+                          <span className="text-purple-400">KES 2,000.00</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span>Daily Income:</span>
+                          <span className="text-purple-400">KES 300.00</span>
+                        </p>
+                        <p className="flex justify-between">
+                          <span>Total Income:</span>
+                          <span className="text-purple-400">KES 9,000.00</span>
                         </p>
                         <p className="flex justify-between">
                           <span>Cycle:</span>
