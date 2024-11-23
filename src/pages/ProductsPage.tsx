@@ -77,7 +77,7 @@ const ProductsPage = () => {
           alt: "Quantumcomps Side View"
         }
       ],
-      price: "KES 3,500.00",
+      price: "KES 9,000.00",
       dailyIncome: "KES 1,100.00",
       totalIncome: "KES 33,000.00",
       cycle: "30 days",
